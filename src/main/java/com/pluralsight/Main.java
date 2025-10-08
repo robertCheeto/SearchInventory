@@ -16,6 +16,8 @@ public class Main {
 
     } // end of main()
 
+    // https://www.bezkoder.com/java-sort-arraylist-of-objects/ <- good reference for sorting arrays and putting
+    // various data types into an ArrayList if a constructor is being used
     public static ArrayList<Product> getInventory() {
         ArrayList<Product> inventory = new ArrayList<Product>();
         inventory.add(new Product(001, "Hammer", 2.49f));
