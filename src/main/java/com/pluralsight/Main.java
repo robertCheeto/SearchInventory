@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,11 +22,33 @@ public class Main {
     // various data types into an ArrayList if a constructor is being used
     public static ArrayList<Product> getInventory() {
         ArrayList<Product> inventory = new ArrayList<Product>();
-        inventory.add(new Product(001, "Hammer", 2.49f));
-        inventory.add(new Product(002, "Nails", 1.99f));
-        inventory.add(new Product(003, "Screwdriver", 3.29f));
-        inventory.add(new Product(004, "Picture Frame", 5.89f));
-        inventory.add(new Product(005, "Gum - 12 Pack", 0.99f));
+        try{
+            FileReader fileReader = new FileReader("src/main/resources/inventory.csv");
+            BufferedReader bufReader = new BufferedReader(fileReader);
+            String input = "";
+
+            while ((input = bufReader.readLine()) != null) {
+                String[] parsedList = input.split("\\|");
+                int id = Integer.parseInt(parsedList[0]);
+                String name = parsedList[1];
+                float price = Float.parseFloat(parsedList[2]);
+                inventoryList[count = new Product(id, name, float);
+
+//              inventory.add(new Product(001, "Hammer", 2.49f));
+                inventory.add(new Product(id.getID(), name.getName(), price.getPrice()));
+
+            }
+            bufReader.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+//        inventory.add(new Product(001, "Hammer", 2.49f));
+//        inventory.add(new Product(002, "Nails", 1.99f));
+//        inventory.add(new Product(003, "Screwdriver", 3.29f));
+//        inventory.add(new Product(004, "Picture Frame", 5.89f));
+//        inventory.add(new Product(005, "Gum - 12 Pack", 0.99f));
 
         return inventory;
 
