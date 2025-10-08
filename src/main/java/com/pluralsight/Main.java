@@ -28,8 +28,14 @@ public class Main {
                 userInput = keyboard.nextInt();
                 keyboard.nextLine();
                 productSearch(userInput);
+            case(3):
+                System.out.print("Enter a Minimum Price Amount: ");
+                double userLowerPrice = keyboard.nextDouble();
+                System.out.print("Enter a Maximum Price Amount: ");
+                double userHighPrice = keyboard.nextDouble();
+                priceSearch(userLowerPrice, userHighPrice);
 
-        }
+        } // end of switch statement
 
 
     } // end of main()
@@ -77,7 +83,6 @@ public class Main {
     } // end of displayMenu()
 
     public static ArrayList<Product> productSearch(int userInput) {
-        // wonder if I need to have the array list filled in main for this method to work
         for (Product inventory : getInventory()) {
             if (inventory.getId() == userInput) {
                 System.out.println("\nSearching Inventory for Product ID: " + userInput);
@@ -90,5 +95,20 @@ public class Main {
         } // end of for loop
         return getInventory();
     } // end of productSearch()
+
+    public static ArrayList<Product> priceSearch(double userLowerPrice, double userHighPrice) {
+        for (Product inventory : getInventory()) {
+            if (inventory.getPrice() > userLowerPrice && inventory.getPrice() < userHighPrice) {
+                System.out.printf("\nSearching Inventory for Products with Minimum Price of $%.2f & Maximum Price of  $%.2f", userLowerPrice, userHighPrice);
+                System.out.printf("\nMatch found!\nProduct ID: %d | Product Name: %s | Price: $%.2f", inventory.getId(), inventory.getName(), inventory.getPrice());
+            } // end of if statement
+            else {
+                System.out.printf("\nNo Product Match with Minimum Price of $%.2f and Maximum Price of $%.2f: ", userLowerPrice, userHighPrice);
+                System.out.println("Returning to Main Menu...");
+            } // end of else statement
+
+        } // end of for loop
+        return getInventory();
+    } // end of priceSearch()
 
 }
