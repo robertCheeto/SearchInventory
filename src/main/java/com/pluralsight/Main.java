@@ -25,7 +25,9 @@ public class Main {
                 } // end of for loop
             case(2):
                 System.out.print("Enter a Product ID you'd like to search for: ");
-                productSearch();
+                userInput = keyboard.nextInt();
+                keyboard.nextLine();
+                productSearch(userInput);
 
         }
 
@@ -74,10 +76,19 @@ public class Main {
         System.out.print("\nPlease enter your choice here: ");
     } // end of displayMenu()
 
-    public static ArrayList<Product> productSearch() {
+    public static ArrayList<Product> productSearch(int userInput) {
         // wonder if I need to have the array list filled in main for this method to work
-
-
+        for (Product inventory : getInventory()) {
+            if (inventory.getId() == userInput) {
+                System.out.println("\nSearching Inventory for Product ID: " + userInput);
+                System.out.printf("\nMatch found!\nProduct ID: %d | Product Name: %s | Price: $%.2f", inventory.getId(), inventory.getName(), inventory.getPrice());
+            }
+            else {
+                System.out.println("\nNo Match with Product ID: " + userInput);
+                System.out.println("Returning to Main Menu...");
+            }
+        } // end of for loop
+        return getInventory();
     } // end of productSearch()
 
 }
